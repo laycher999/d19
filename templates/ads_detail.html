@@ -1,0 +1,16 @@
+{% extends "default.html" %}
+
+{% block content %}
+{% for response in responses %}
+  <p>Ответ от {{ response.sender.username }}: {{ response.text }}</p>
+{% endfor %}
+  <h1>{{ ads_detail.title }}</h1>
+<a href="{% url 'create_response' ad_id=ads_detail.id %}">Откликнуться</a>
+  <p>Author: {{ ads_detail.author }}</p>
+  <p>Text: {{ ads_detail.text|safe }}</p>
+  <p>Просмотры: {{ ads_detail.views }}</p>
+  <p>Категория: {{ ads_detail.category }}</p>
+  <p>Дата создания: {{ ads_detail.date_create }}</p>
+  <p>Статус: {{ ads_detail.status }}</p>
+  <!-- Добавьте другие поля объявления по мере необходимости -->
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "default.html" %}
+
+{% block content %}
+  <h1>Отклики и просмотры объявления "{{ ads_like.ad.title }}"</h1>
+
+  <p>Просмотры: {{ ads_like.ad.views }}</p>
+
+  <h2>Отклики:</h2>
+  <ul>
+    {% for response in responses %}
+      <li>
+        <strong>Имя пользователя:</strong> {{ response.user_name }}<br>
+        <strong>Текст отклика:</strong> {{ response.text }}
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

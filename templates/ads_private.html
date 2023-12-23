@@ -1,0 +1,33 @@
+{% extends "default.html" %}
+
+{% block content %}
+  <h1>Мои объявления</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Date Created</th>
+        <th>Status</th>
+        <th>Views</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ad in ads %}
+        <tr>
+          <td>
+            <a href="{% url 'ads_detail' pk=ad.id %}">{{ ad.title }}</a>
+          </td>
+          <td>{{ ad.date_create }}</td>
+          <td>{{ ad.status }}</td>
+          <td>{{ ad.views }}</td>
+          <td>
+            <a href="{% url 'ad_private_detail' pk=ad.id %}">Посмотреть отклики</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

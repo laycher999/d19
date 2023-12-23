@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        <p>Привет {{ user.username }}!</p>
+    <p><a href="{% url 'account_logout' %}">Выйти</a></p>
+    <p><a href="{% url 'create_ad' %}">Разместить объявление</a></p>
+    {% else %}
+        <p>Войдите в учётную запись</p>
+        <a href="{% url 'account_login' %}">Войти</a>
+
+    {% endif %}
+    <ul>
+        <li><a href="{% url 'index' %}">Главная</a></li>
+        <li><a href="{% url 'ads' %}">Объявления</a></li>
+        <li><a href="{% url 'adsprivate' %}">Отклики</a></li>
+    </ul>
+    {% block content %}{% endblock %}
+</body>
+</html>

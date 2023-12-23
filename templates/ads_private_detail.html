@@ -1,0 +1,31 @@
+{% extends "default.html" %}
+
+{% block content %}
+  <h1>{{ ads_detail.title }}</h1>
+
+  <h2>Отклики:</h2>
+  <ul>
+    {% for response in responses %}
+      <li>
+        <strong>Имя пользователя:</strong> {{ response.sender.username }}<br>
+        <strong>Текст отклика:</strong> {{ response.text }}<br>
+        <strong>Статус отклика:</strong> {{ response.status }}
+
+        <form method="post" action="{% url 'accept_response' ad_id=ads_detail.id response_id=response.id %}">
+          {% csrf_token %}
+          <button type="submit">Принять</button>
+        </form>
+
+        <form method="post" action="{% url 'reject_response' ad_id=ads_detail.id response_id=response.id %}">
+          {% csrf_token %}
+          <button type="submit">Отклонить</button>
+        </form>
+
+<form method="post" action="{% url 'delete_response' pk=ads_detail.id response_id=response.id %}">
+  {% csrf_token %}
+  <button type="submit">Удалить</button>
+</form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
